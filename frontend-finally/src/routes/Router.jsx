@@ -20,6 +20,7 @@ import Register from "../pages/Register";
 import History from "../pages/History/HistoryPage";
 import EditPurchaseOrder from "../pages/PurchaseOrder/EditPurchaseOrder";
 import SettingsPage from "../pages/Settings/SettingsPage";
+import LineCallback from "../pages/LineCallback";
 
 // Layout
 import MainLayout from "../layouts/Mainlayout";
@@ -118,6 +119,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/line/callback",
+    element: <LineCallback />,
   },
 ]);
 
