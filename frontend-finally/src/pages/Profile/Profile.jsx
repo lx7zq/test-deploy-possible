@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaEdit, FaUserCircle, FaUser, FaPhone } from "react-icons/fa";
+import { FaArrowLeft, FaEdit, FaUserCircle, FaUser, FaPhone, FaLink } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/user.service";
+
+const LINE_CLIENT_ID = import.meta.env.VITE_LINE_CLIENT_ID;
+const REDIRECT_URI = import.meta.env.VITE_LINE_REDIRECT_URI;
+const STATE = import.meta.env.VITE_LINE_STATE;
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -86,6 +90,23 @@ const Profile = () => {
               value={user.phoneNumber} 
               icon={<FaPhone size={15} />} 
               />
+              {/* ปุ่มเชื่อมบัญชี LINE */}
+              {user.lineUserId ? (
+                <div className="flex items-center gap-2 mt-4 text-green-600">
+                  <FaLink />
+                  <span>เชื่อมบัญชี LINE แล้ว</span>
+                </div>
+              ) : (
+                <button
+                  className="btn btn-success flex gap-2 mt-4"
+                  onClick={() => {
+                    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=${STATE}&scope=profile%20openid`;
+                    window.location.href = url;
+                  }}
+                >
+                  <FaLink /> เชื่อมบัญชี LINE
+                </button>
+              )}
             </div>
 
             <div className="flex justify-end mt-10">
