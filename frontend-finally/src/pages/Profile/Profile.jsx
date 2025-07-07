@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaEdit, FaUserCircle, FaUser, FaPhone, FaLink } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/user.service";
+import BindLine from "./BindLine";
 
 const LINE_CLIENT_ID = import.meta.env.VITE_LINE_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_LINE_REDIRECT_URI;
@@ -97,15 +98,18 @@ const Profile = () => {
                   <span>เชื่อมบัญชี LINE แล้ว</span>
                 </div>
               ) : (
-                <button
-                  className="btn btn-success flex gap-2 mt-4"
-                  onClick={() => {
-                    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=${STATE}&scope=profile%20openid`;
-                    window.location.href = url;
-                  }}
-                >
-                  <FaLink /> เชื่อมบัญชี LINE
-                </button>
+                <>
+                  <button
+                    className="btn btn-success flex gap-2 mt-4 mb-4"
+                    onClick={() => {
+                      const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=${STATE}&scope=profile%20openid`;
+                      window.location.href = url;
+                    }}
+                  >
+                    <FaLink /> เชื่อมบัญชี LINE (Login)
+                  </button>
+                  <BindLine />
+                </>
               )}
             </div>
 
