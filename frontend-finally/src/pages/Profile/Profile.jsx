@@ -33,6 +33,7 @@ const Profile = () => {
       </div>
     </div>
   );
+ 
 
   return (
     <div className="text-black flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -94,7 +95,7 @@ const Profile = () => {
                 className="btn btn-warning flex gap-2"
                 onClick={() => navigate("/edit-profile")}
               >
-                <FaEdit /> แก้ไขข้อมูลส่วนตัว
+                <FaEdit /> แก้ไขข้อมูลส่วนตัวว
               </button>
             </div>
           </>
